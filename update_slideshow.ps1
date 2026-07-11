@@ -1,13 +1,13 @@
-$assetsDir = Join-Path $PSScriptRoot "assets"
-$htmlFile = Join-Path $PSScriptRoot "special_day.html"
+$assetsDir = Join-Path $PSScriptRoot "public/assets"
+$htmlFile = Join-Path $PSScriptRoot "src/pages/CelebrationPage.jsx"
 
 if (-not (Test-Path $assetsDir)) {
-    Write-Host "Error: 'assets' folder not found." -ForegroundColor Red
+    Write-Host "Error: 'public/assets' folder not found." -ForegroundColor Red
     exit
 }
 
 if (-not (Test-Path $htmlFile)) {
-    Write-Host "Error: 'special_day.html' not found." -ForegroundColor Red
+    Write-Host "Error: 'src/pages/CelebrationPage.jsx' not found." -ForegroundColor Red
     exit
 }
 
@@ -40,7 +40,7 @@ $replacement = "/* --- Slideshow Data Start --- */`r`n            $jsArray`r`n  
 if ($content -match $pattern) {
     $newContent = [System.Text.RegularExpressions.Regex]::Replace($content, $pattern, $replacement)
     [System.IO.File]::WriteAllText($htmlFile, $newContent)
-    Write-Host "Successfully updated slideshow images in 'special_day.html'!" -ForegroundColor Green
+    Write-Host "Successfully updated slideshow images in 'CelebrationPage.jsx'!" -ForegroundColor Green
 } else {
-    Write-Host "Error: Could not find slideshow markers in 'special_day.html'." -ForegroundColor Red
+    Write-Host "Error: Could not find slideshow markers in 'CelebrationPage.jsx'." -ForegroundColor Red
 }

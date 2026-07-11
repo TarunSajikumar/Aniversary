@@ -1,0 +1,74 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rose:    #e05585;
+    --rose-dk: #c8365a;
+    --pink:    #ffb4d0;
+    --glow:    rgba(220, 80, 130, 0.6);
+    --glass:   rgba(255, 255, 255, 0.04);
+    --border:  rgba(255, 100, 150, 0.18);
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #08000e;
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Aurora Background */
+#aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, #3d0030 0%, #08000e 70%);
+}
+
+.aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: auroraFloat linear infinite;
+}
+
+.blob1 {
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, #c8365a, transparent 70%);
+    top: -10%; left: -15%;
+    animation-duration: 22s;
+}
+
+.blob2 {
+    width: 500px; height: 350px;
+    background: radial-gradient(ellipse, #7b1ea2, transparent 70%);
+    top: 30%; right: -10%;
+    animation-duration: 28s;
+    animation-delay: -8s;
+}
+
+.blob3 {
+    width: 400px; height: 300px;
+    background: radial-gradient(ellipse, #e05585, transparent 70%);
+    bottom: -5%; left: 30%;
+    animation-duration: 18s;
+    animation-delay: -14s;
+}
+
+@keyframes auroraFloat {
+    0%   { transform: translate(0, 0)    scale(1);    }
+    33%  { transform: translate(60px,-40px) scale(1.12); }
+    66%  { transform: translate(-40px,30px) scale(0.92); }
+    100% { transform: translate(0, 0)    scale(1);    }
+}

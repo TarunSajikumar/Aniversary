@@ -1,0 +1,145 @@
+/* ══════════════════════════════════════
+   MUSIC BUTTON
+══════════════════════════════════════ */
+#music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(220, 80, 130, 0.1);
+    border: 1px solid rgba(220, 80, 130, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+#music-btn:hover {
+    background: rgba(220, 80, 130, 0.25);
+    transform: scale(1.1);
+    border-color: rgba(255, 140, 190, 0.6);
+    box-shadow: 0 0 25px rgba(220, 80, 130, 0.4);
+}
+
+.music-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 20px;
+}
+
+.music-bar {
+    width: 3px;
+    background: rgba(255, 180, 210, 0.9);
+    border-radius: 2px;
+    transition: height 0.3s;
+}
+
+.bar1 { height: 8px; }
+.bar2 { height: 14px; }
+.bar3 { height: 10px; }
+.bar4 { height: 16px; }
+
+@keyframes bd1 { 0%,100%{height:8px}  50%{height:17px} }
+@keyframes bd2 { 0%,100%{height:14px} 50%{height:5px}  }
+@keyframes bd3 { 0%,100%{height:10px} 50%{height:19px} }
+@keyframes bd4 { 0%,100%{height:16px} 50%{height:7px}  }
+
+.music-playing .bar1 { animation: bd1 0.55s ease-in-out infinite; }
+.music-playing .bar2 { animation: bd2 0.48s ease-in-out infinite 0.10s; }
+.music-playing .bar3 { animation: bd3 0.65s ease-in-out infinite 0.22s; }
+.music-playing .bar4 { animation: bd4 0.52s ease-in-out infinite 0.06s; }
+
+#music-label {
+    font-size: 7px;
+    color: rgba(255, 160, 190, 0.65);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   TAP TO START OVERLAY
+══════════════════════════════════════ */
+#tap-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 0, 14, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    cursor: pointer;
+    animation: overlayFadeIn 0.6s ease both;
+    gap: 18px;
+}
+
+@keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#tap-overlay.hiding {
+    animation: overlayFadeOut 0.7s ease forwards;
+}
+
+@keyframes overlayFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; pointer-events: none; }
+}
+
+.tap-heart {
+    font-size: 64px;
+    animation: tapHeartPulse 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 24px rgba(255, 77, 121, 0.8));
+}
+
+@keyframes tapHeartPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.15); }
+}
+
+.tap-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 77, 121, 0.6);
+    letter-spacing: 1px;
+}
+
+.tap-sub {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 180, 210, 0.5);
+}
+
+/* Responsive Shared elements */
+@media (max-width: 500px) {
+    #music-btn {
+        width: 44px;
+        height: 44px;
+        top: 14px;
+        right: 14px;
+    }
+
+    .music-bars {
+        height: 18px;
+        gap: 2px;
+    }
+
+    .music-bar {
+        width: 2.5px;
+    }
+}
