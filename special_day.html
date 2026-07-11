@@ -297,7 +297,7 @@
             font-size: 4.6rem;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2rem;
             text-shadow: 0 0 20px rgba(255, 77, 121, 0.5), 0 4px 20px rgba(0, 0, 0, 0.5);
             animation: glow 4s ease-in-out infinite alternate;
             line-height: 1.1;
@@ -408,17 +408,34 @@
             fill: #ff1a53;
         }
 
-        .heart-icon:nth-child(1) { animation-delay: 0.0s; }
-        .heart-icon:nth-child(2) { animation-delay: 0.2s; }
-        .heart-icon:nth-child(3) { animation-delay: 0.4s; }
-        .heart-icon:nth-child(4) { animation-delay: 0.6s; }
-        .heart-icon:nth-child(5) { animation-delay: 0.8s; }
+        .heart-icon:nth-child(1) {
+            animation-delay: 0.0s;
+        }
+
+        .heart-icon:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .heart-icon:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .heart-icon:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .heart-icon:nth-child(5) {
+            animation-delay: 0.8s;
+        }
 
         @keyframes heartPulseStaggered {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 filter: drop-shadow(0 0 6px rgba(255, 77, 121, 0.6));
             }
+
             50% {
                 transform: scale(1.22);
                 filter: drop-shadow(0 0 14px rgba(255, 77, 121, 0.9));
@@ -523,19 +540,24 @@
 
         <div class="cel-hearts">
             <svg class="heart-icon" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                <path
+                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
             </svg>
             <svg class="heart-icon" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                <path
+                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
             </svg>
             <svg class="heart-icon" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                <path
+                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
             </svg>
             <svg class="heart-icon" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                <path
+                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
             </svg>
             <svg class="heart-icon" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                <path
+                    d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
             </svg>
         </div>
     </div>
@@ -706,36 +728,118 @@
             /* ─── Background Slideshow ─── */
             /* --- Slideshow Data Start --- */
             const slidesData = [
-                'assests/086f625e-6cb7-4ae1-946c-645dfbae6224.png',
-                'assests/ChatGPT Image May 31, 2026, 10_43_28 PM.png',
-                'assests/IMG_20260121_171059266.jpg',
-                'assests/IMG_20260121_172158994.jpg',
-                'assests/IMG_20260121_172204461.jpg',
-                'assests/IMG_20260202_163522911.jpg',
-                'assests/IMG_20260211_011240.jpg',
-                'assests/IMG_20260224_010705.jpg'
+                'assets/ChatGPT Image Feb 8, 2026, 09_33_37 PM.webp',
+                'assets/ChatGPT Image May 31, 2026, 10_43_28 PM.webp',
+                'assets/IMG-20241126-WA0052.webp',
+                'assets/IMG_20251114_141133386~2_LE_upscale_balanced_tone_enhance_40_color_enhance_60.webp',
+                'assets/IMG_20260121_171059266.webp',
+                'assets/IMG_20260121_171942117_HDR.webp',
+                'assets/IMG_20260121_172158994.webp',
+                'assets/IMG_20260121_172204461.webp',
+                'assets/IMG_20260202_163522911.webp',
+                'assets/IMG_20260211_011240.webp',
+                'assets/IMG_20260224_010705.webp',
+                'assets/IMG_20260321_162143072.webp',
+                'assets/IMG_20260321_162147235.webp',
+                'assets/IMG_20260321_162149983.webp',
+                'assets/IMG_20260406_193506996_BURST000_COVER.webp',
+                'assets/IMG_20260406_221646251.webp',
+                'assets/IMG_20260406_221805014_HDR.webp',
+                'assets/IMG_20260406_233716480_BURST000_COVER.webp',
+                'assets/IMG_20260615_172652752.webp',
+                'assets/IMG_20260626_182156143.webp',
+                'assets/IMG_20260627_075918335_HDR.webp',
+                'assets/IMG_20260627_080029372_BURST000_COVER.webp',
+                'assets/IMG_20260627_102215795_HDR.webp',
+                'assets/Screenshot_20260118-225855.webp',
+                'assets/Screenshot_20260527-202032.webp',
+                'assets/Snapchat-1111292778.webp',
+                'assets/Snapchat-1384230705.webp',
+                'assets/Snapchat-1887889424.webp'
             ];
             /* --- Slideshow Data End --- */
             let currentSlideIndex = 0;
             const slideElements = [];
+            let shuffledIndices = [];
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function loadSlideImage(slideEl) {
+                if (!slideEl) return;
+                const src = slideEl.getAttribute('data-src');
+                if (src) {
+                    slideEl.style.backgroundImage = `url('${src}')`;
+                    slideEl.removeAttribute('data-src'); // mark as loaded
+                }
+            }
+
+            function getSlideAtShuffledIndex(index) {
+                const actualIndex = shuffledIndices[index % shuffledIndices.length];
+                return slideElements[actualIndex];
+            }
 
             function initSlideshow() {
                 const bgContainer = document.getElementById('ann-bg');
-                slidesData.forEach((src, idx) => {
+                slidesData.forEach((src) => {
                     const slide = document.createElement('div');
                     slide.className = 'bg-slide';
-                    slide.style.backgroundImage = `url('${src}')`;
-                    if (idx === 0) slide.classList.add('active');
+                    slide.setAttribute('data-src', src);
                     bgContainer.insertBefore(slide, bgContainer.firstChild);
                     slideElements.push(slide);
                 });
-                if (slidesData.length > 1) setInterval(nextSlide, 7000);
+                
+                if (slideElements.length > 0) {
+                    shuffledIndices = Array.from({length: slideElements.length}, (_, i) => i);
+                    shuffle(shuffledIndices);
+                    currentSlideIndex = 0;
+                    
+                    const firstSlide = getSlideAtShuffledIndex(currentSlideIndex);
+                    loadSlideImage(firstSlide);
+                    firstSlide.classList.add('active');
+                    
+                    // Preload the second slide immediately
+                    if (slideElements.length > 1) {
+                        const secondSlide = getSlideAtShuffledIndex(currentSlideIndex + 1);
+                        loadSlideImage(secondSlide);
+                    }
+                    
+                    if (slidesData.length > 1) {
+                        setInterval(nextSlide, 7000);
+                    }
+                }
             }
 
             function nextSlide() {
-                slideElements[currentSlideIndex].classList.remove('active');
-                currentSlideIndex = (currentSlideIndex + 1) % slideElements.length;
-                slideElements[currentSlideIndex].classList.add('active');
+                if (slideElements.length === 0) return;
+                
+                const currentSlide = getSlideAtShuffledIndex(currentSlideIndex);
+                currentSlide.classList.remove('active');
+                
+                currentSlideIndex++;
+                if (currentSlideIndex >= shuffledIndices.length) {
+                    const lastSlideId = shuffledIndices[shuffledIndices.length - 1];
+                    shuffle(shuffledIndices);
+                    if (shuffledIndices[0] === lastSlideId && shuffledIndices.length > 1) {
+                        [shuffledIndices[0], shuffledIndices[shuffledIndices.length - 1]] = [shuffledIndices[shuffledIndices.length - 1], shuffledIndices[0]];
+                    }
+                    currentSlideIndex = 0;
+                }
+                
+                const nextSlideEl = getSlideAtShuffledIndex(currentSlideIndex);
+                loadSlideImage(nextSlideEl);
+                nextSlideEl.classList.add('active');
+                
+                // Preload the next one in the background (currentSlideIndex + 1)
+                if (slideElements.length > 1) {
+                    const preloadSlideEl = getSlideAtShuffledIndex(currentSlideIndex + 1);
+                    loadSlideImage(preloadSlideEl);
+                }
             }
 
             /* ─── Background Music (BGM) ─── */
@@ -796,7 +900,7 @@
                     const lines = para.split(/\r?\n/)
                         .map(line => line.trim())
                         .filter(line => line.length > 0);
-                    
+
                     if (lines.length === 0) return;
 
                     // Chunk lines in pairs of 2

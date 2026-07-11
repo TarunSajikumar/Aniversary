@@ -1,8 +1,8 @@
-$assetsDir = Join-Path $PSScriptRoot "assests"
+$assetsDir = Join-Path $PSScriptRoot "assets"
 $htmlFile = Join-Path $PSScriptRoot "special_day.html"
 
 if (-not (Test-Path $assetsDir)) {
-    Write-Host "Error: 'assests' folder not found." -ForegroundColor Red
+    Write-Host "Error: 'assets' folder not found." -ForegroundColor Red
     exit
 }
 
@@ -15,20 +15,20 @@ if (-not (Test-Path $htmlFile)) {
 $images = Get-ChildItem -Path $assetsDir -File | Where-Object { $_.Extension -match '\.(jpg|jpeg|png|webp|gif)$' }
 
 if ($images.Count -eq 0) {
-    Write-Host "No images found in 'assests' folder." -ForegroundColor Yellow
+    Write-Host "No images found in 'assets' folder." -ForegroundColor Yellow
     exit
 }
 
 # Generate JS array string
 $jsArray = "const slidesData = [`r`n"
 foreach ($img in $images) {
-    $path = "assests/" + $img.Name
+    $path = "assets/" + $img.Name
     $jsArray += "                '$path',`r`n"
 }
 # Trim trailing comma
 $jsArray = $jsArray.Substring(0, $jsArray.Length - 3) + "`r`n            ];"
 
-Write-Host "Found $($images.Count) images in 'assests' folder." -ForegroundColor Green
+Write-Host "Found $($images.Count) images in 'assets' folder." -ForegroundColor Green
 
 # Read HTML file content
 $content = [System.IO.File]::ReadAllText($htmlFile)
