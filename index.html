@@ -7,165 +7,124 @@
     <title>Our Anniversary ♥</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --rose:    #e05585;
+            --rose-dk: #c8365a;
+            --pink:    #ffb4d0;
+            --glow:    rgba(220, 80, 130, 0.6);
+            --glass:   rgba(255, 255, 255, 0.04);
+            --border:  rgba(255, 100, 150, 0.18);
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         body {
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0d0010;
+            background: #08000e;
             font-family: 'Outfit', sans-serif;
-            overflow: hidden;
+            color: #fff;
         }
 
-        #ann-root {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #ann-bg {
-            position: absolute;
+        /* ══════════════════════════════════════
+           AURORA BACKGROUND
+        ══════════════════════════════════════ */
+        #aurora {
+            position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, #1a0010 0%, #3d0030 30%, #1a0520 60%, #0d0d1a 100%);
             z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, #3d0030 0%, #08000e 70%);
         }
 
-        canvas#ann-canvas {
+        .aurora-blob {
             position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: auroraFloat linear infinite;
+        }
+
+        .blob1 {
+            width: 600px; height: 400px;
+            background: radial-gradient(ellipse, #c8365a, transparent 70%);
+            top: -10%; left: -15%;
+            animation-duration: 22s;
+        }
+        .blob2 {
+            width: 500px; height: 350px;
+            background: radial-gradient(ellipse, #7b1ea2, transparent 70%);
+            top: 30%; right: -10%;
+            animation-duration: 28s;
+            animation-delay: -8s;
+        }
+        .blob3 {
+            width: 400px; height: 300px;
+            background: radial-gradient(ellipse, #e05585, transparent 70%);
+            bottom: -5%; left: 30%;
+            animation-duration: 18s;
+            animation-delay: -14s;
+        }
+
+        @keyframes auroraFloat {
+            0%   { transform: translate(0, 0)    scale(1);    }
+            33%  { transform: translate(60px,-40px) scale(1.12); }
+            66%  { transform: translate(-40px,30px) scale(0.92); }
+            100% { transform: translate(0, 0)    scale(1);    }
+        }
+
+        /* ══════════════════════════════════════
+           CANVAS PARTICLES
+        ══════════════════════════════════════ */
+        #ann-canvas {
+            position: fixed;
             inset: 0;
             z-index: 1;
             pointer-events: none;
         }
 
 
-        .ann-blur-overlay {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-        }
 
-        /* ── Enter overlay ── */
-        #enter-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(ellipse at center, #3d0030 0%, #0d0010 70%);
-            cursor: pointer;
-            animation: overlayPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes overlayPulse {
-            0%, 100% { background: radial-gradient(ellipse at center, #3d0030 0%, #0d0010 70%); }
-            50%       { background: radial-gradient(ellipse at center, #5a0045 0%, #1a0018 70%); }
-        }
-
-        .enter-heart {
-            font-size: 80px;
-            animation: heartBeat 1.4s ease-in-out infinite;
-            filter: drop-shadow(0 0 24px rgba(220, 80, 130, 0.9));
-            margin-bottom: 20px;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            14%       { transform: scale(1.18); }
-            28%       { transform: scale(1); }
-            42%       { transform: scale(1.12); }
-            70%       { transform: scale(1); }
-        }
-
-        .enter-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(26px, 6vw, 42px);
-            color: #ffb4d0;
-            text-shadow: 0 0 20px rgba(220, 80, 130, 0.8);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .enter-sub {
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            color: rgba(255, 180, 210, 0.6);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .enter-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #c8365a 0%, #e05585 50%, #c8365a 100%);
-            background-size: 200% 200%;
-            border: none;
-            border-radius: 50px;
-            padding: 16px 44px;
-            font-size: 16px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 500;
-            color: #fff;
-            cursor: pointer;
-            letter-spacing: 1.5px;
-            animation: shimmer 3s ease infinite;
-            box-shadow: 0 8px 32px rgba(220, 80, 130, 0.45);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .enter-btn:hover {
-            transform: scale(1.06);
-            box-shadow: 0 12px 40px rgba(220, 80, 130, 0.65);
-        }
-
-        .enter-note {
-            margin-top: 18px;
-            font-size: 12px;
-            color: rgba(255, 180, 210, 0.35);
-            letter-spacing: 2px;
-        }
-
-        /* ── Music button ── */
+        /* ══════════════════════════════════════
+           MUSIC BUTTON
+        ══════════════════════════════════════ */
         #music-btn {
             position: fixed;
-            top: 18px;
-            right: 18px;
-            z-index: 100;
-            width: 48px;
-            height: 48px;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            background: rgba(220, 80, 130, 0.15);
-            border: 1px solid rgba(220, 80, 130, 0.35);
+            background: rgba(220, 80, 130, 0.1);
+            border: 1px solid rgba(220, 80, 130, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             flex-direction: column;
-            gap: 2px;
-            transition: background 0.2s, transform 0.2s;
-            backdrop-filter: blur(8px);
+            gap: 3px;
+            transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         #music-btn:hover {
-            background: rgba(220, 80, 130, 0.3);
-            transform: scale(1.08);
+            background: rgba(220, 80, 130, 0.25);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(220, 80, 130, 0.4);
         }
 
         .music-bars {
@@ -179,143 +138,104 @@
             width: 3px;
             background: rgba(255, 180, 210, 0.9);
             border-radius: 2px;
+            transition: height 0.3s;
         }
 
-        .bar1 {
-            height: 8px;
-        }
+        .bar1 { height: 8px; }
+        .bar2 { height: 14px; }
+        .bar3 { height: 10px; }
+        .bar4 { height: 16px; }
 
-        .bar2 {
-            height: 14px;
-        }
+        @keyframes bd1 { 0%,100%{height:8px}  50%{height:17px} }
+        @keyframes bd2 { 0%,100%{height:14px} 50%{height:5px}  }
+        @keyframes bd3 { 0%,100%{height:10px} 50%{height:19px} }
+        @keyframes bd4 { 0%,100%{height:16px} 50%{height:7px}  }
 
-        .bar3 {
-            height: 10px;
-        }
-
-        .bar4 {
-            height: 16px;
-        }
-
-        @keyframes bar-dance1 {
-
-            0%,
-            100% {
-                height: 8px
-            }
-
-            50% {
-                height: 16px
-            }
-        }
-
-        @keyframes bar-dance2 {
-
-            0%,
-            100% {
-                height: 14px
-            }
-
-            50% {
-                height: 6px
-            }
-        }
-
-        @keyframes bar-dance3 {
-
-            0%,
-            100% {
-                height: 10px
-            }
-
-            50% {
-                height: 18px
-            }
-        }
-
-        @keyframes bar-dance4 {
-
-            0%,
-            100% {
-                height: 16px
-            }
-
-            50% {
-                height: 8px
-            }
-        }
-
-        .music-playing .bar1 {
-            animation: bar-dance1 0.6s ease-in-out infinite;
-        }
-
-        .music-playing .bar2 {
-            animation: bar-dance2 0.5s ease-in-out infinite 0.1s;
-        }
-
-        .music-playing .bar3 {
-            animation: bar-dance3 0.7s ease-in-out infinite 0.2s;
-        }
-
-        .music-playing .bar4 {
-            animation: bar-dance4 0.55s ease-in-out infinite 0.05s;
-        }
+        .music-playing .bar1 { animation: bd1 0.55s ease-in-out infinite; }
+        .music-playing .bar2 { animation: bd2 0.48s ease-in-out infinite 0.10s; }
+        .music-playing .bar3 { animation: bd3 0.65s ease-in-out infinite 0.22s; }
+        .music-playing .bar4 { animation: bd4 0.52s ease-in-out infinite 0.06s; }
 
         #music-label {
-            font-size: 8px;
-            color: rgba(255, 160, 190, 0.7);
+            font-size: 7px;
+            color: rgba(255, 160, 190, 0.65);
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-top: 2px;
         }
 
-        /* ── Main content ── */
-        .ann-content {
+        /* ══════════════════════════════════════
+           MAIN CONTENT
+        ══════════════════════════════════════ */
+        #ann-root {
             position: relative;
-            z-index: 3;
-            text-align: center;
-            padding: 2.5rem 2rem;
+            z-index: 2;
             width: 100%;
-            max-width: 600px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .ann-content {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            width: 100%;
+            max-width: 640px;
+            animation: contentFadeIn 0.8s ease both;
+        }
+
+        @keyframes contentFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Top row ── */
         .ann-hearts-row {
-            font-size: 24px;
-            letter-spacing: 8px;
-            margin-bottom: 0.75rem;
-            opacity: 0.85;
+            font-size: 20px;
+            letter-spacing: 10px;
+            margin-bottom: 0.7rem;
+            opacity: 0.7;
+            animation: floatY 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-5px); }
         }
 
         .ann-label {
-            font-size: 11px;
-            letter-spacing: 6px;
+            font-size: 10px;
+            letter-spacing: 7px;
             text-transform: uppercase;
-            color: rgba(255, 180, 200, 0.5);
-            margin-bottom: 0.8rem;
+            color: rgba(255, 180, 200, 0.45);
+            margin-bottom: 0.7rem;
         }
 
         .ann-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 4.4rem;
+            font-size: clamp(3rem, 9vw, 5rem);
             font-weight: 700;
             color: #fff;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
             letter-spacing: 1px;
-            text-shadow: 0 0 15px rgba(255, 77, 121, 0.6), 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-shadow:
+                0 0 20px rgba(255, 77, 121, 0.7),
+                0 0 60px rgba(255, 77, 121, 0.25),
+                0 2px 12px rgba(0, 0, 0, 0.5);
             line-height: 1.1;
         }
 
         .ann-subtitle {
-            font-size: 0.8rem;
-            color: rgba(255, 190, 215, 0.6);
+            font-size: 0.75rem;
+            color: rgba(255, 190, 215, 0.55);
             margin-bottom: 2.8rem;
             letter-spacing: 4px;
             background: rgba(255, 255, 255, 0.03);
-            padding: 0.4rem 1.6rem;
+            padding: 6px 22px;
             border-radius: 40px;
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
         }
 
         /* ── Timer ── */
@@ -323,8 +243,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 2.5rem;
+            gap: 10px;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
@@ -332,65 +252,133 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10px;
         }
 
-        .ann-num {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 100, 150, 0.2);
-            border-radius: 16px;
-            padding: 16px 0;
-            width: 92px;
-            font-size: 46px;
-            font-weight: 400;
-            color: #fff;
-            line-height: 1;
-            letter-spacing: -0.5px;
+        /* flip card wrapper */
+        .flip-card {
+            width: 88px;
+            height: 96px;
+            perspective: 400px;
+            cursor: default;
+        }
+
+        .flip-inner {
             position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            font-weight: 300;
+            color: #fff;
+            background: linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(220,80,130,0.06) 100%);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+            backface-visibility: hidden;
             overflow: hidden;
-            animation: pulse-glow 3s ease-in-out infinite;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
         }
 
-        .ann-num:hover {
-            transform: scale(1.06);
-            box-shadow: 0 0 25px rgba(255, 100, 150, 0.35);
-            border-color: rgba(255, 120, 170, 0.5);
-        }
-
-        .ann-num::before {
+        .flip-front::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(220, 80, 120, 0.14) 0%, rgba(180, 40, 100, 0.04) 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        /* subtle top highlight line */
+        .flip-front::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 10%; right: 10%;
+            height: 1px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 1px;
+        }
+
+        .flip-back {
+            transform: rotateX(180deg);
+        }
+
+        .flip-card.flipping .flip-inner {
+            animation: flipAnim 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes flipAnim {
+            0%   { transform: rotateX(0deg);    }
+            50%  { transform: rotateX(-90deg);   }
+            100% { transform: rotateX(0deg);     }
+        }
+
+        /* glow on tick */
+        .flip-card.ticked {
+            animation: cardGlow 0.4s ease forwards;
+        }
+
+        @keyframes cardGlow {
+            0%   { box-shadow: none; }
+            50%  { box-shadow: 0 0 30px rgba(220, 80, 130, 0.5); }
+            100% { box-shadow: none; }
         }
 
         .ann-uname {
-            margin-top: 10px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            color: rgba(255, 180, 210, 0.6);
+            color: rgba(255, 180, 210, 0.5);
         }
 
         .ann-sep {
-            font-size: 36px;
-            color: rgba(255, 100, 150, 0.4);
-            margin-bottom: 36px;
+            font-size: 34px;
+            color: rgba(255, 100, 150, 0.3);
+            margin-bottom: 38px;
             line-height: 1;
+            font-weight: 300;
         }
 
-        @keyframes pulse-glow {
+        /* ── Progress bar ── */
+        .ann-progress-wrap {
+            margin-bottom: 1.6rem;
+            text-align: center;
+        }
 
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(220, 80, 130, 0);
-            }
+        .progress-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: rgba(255, 180, 210, 0.35);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
 
-            50% {
-                box-shadow: 0 0 20px 5px rgba(220, 80, 130, 0.18);
-            }
+        .progress-track {
+            width: 100%;
+            max-width: 340px;
+            height: 3px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #c8365a, #e05585, #ffb4d0);
+            border-radius: 4px;
+            transition: width 1s linear;
+            box-shadow: 0 0 8px rgba(220, 80, 130, 0.8);
         }
 
         /* ── Date chip ── */
@@ -398,208 +386,204 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(220, 80, 130, 0.1);
-            border: 1px solid rgba(220, 80, 130, 0.2);
+            background: rgba(220, 80, 130, 0.08);
+            border: 1px solid rgba(220, 80, 130, 0.18);
             border-radius: 30px;
-            padding: 7px 20px;
-            font-size: 12px;
-            color: rgba(255, 190, 210, 0.75);
+            padding: 7px 22px;
+            font-size: 11px;
+            color: rgba(255, 190, 210, 0.65);
             letter-spacing: 1px;
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.4rem;
         }
 
-        /* ── Message ── */
+        /* ── Rotating phrases ── */
         .ann-message {
             font-size: 13px;
-            color: rgba(255, 200, 220, 0.45);
+            color: rgba(255, 200, 220, 0.4);
             font-style: italic;
-            letter-spacing: 0.5px;
-            transition: opacity 0.5s;
+            letter-spacing: 0.4px;
+            min-height: 20px;
+            transition: opacity 0.6s ease;
         }
+
+        .ann-message.fading { opacity: 0; }
 
         /* ── Arrived section ── */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heartBeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.16);
-            }
-
-            50% {
-                transform: scale(1);
-            }
-
-            75% {
-                transform: scale(1.09);
-            }
-        }
-
         .ann-arrived-section {
             display: none;
-            animation: fadeInUp 0.9s ease forwards;
+            animation: fadeInUp 1s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .ann-arrived-emoji {
-            font-size: 58px;
+            font-size: 62px;
             display: block;
-            margin-bottom: 1rem;
-            animation: heartBeat 1.6s ease-in-out infinite;
+            margin-bottom: 1.1rem;
+            animation: heartBeatMain 1.6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 100, 150, 0.8));
         }
 
         .ann-arrived-title {
-            font-size: 32px;
-            font-weight: 400;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 7vw, 3rem);
+            font-weight: 600;
             color: #fff;
             margin-bottom: 0.4rem;
+            text-shadow: 0 0 20px rgba(255, 77, 121, 0.6);
         }
 
         .ann-arrived-sub {
-            font-size: 14px;
-            color: rgba(255, 180, 210, 0.6);
+            font-size: 13px;
+            color: rgba(255, 180, 210, 0.55);
             letter-spacing: 2px;
-            margin-bottom: 2.25rem;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+            margin-bottom: 2.2rem;
         }
 
         #open-btn {
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, #c8365a 0%, #e05585 50%, #c8365a 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, var(--rose-dk), var(--rose), var(--rose-dk));
+            background-size: 200%;
             border: none;
-            border-radius: 50px;
-            padding: 15px 40px;
-            font-size: 16px;
+            border-radius: 60px;
+            padding: 16px 44px;
+            font-size: 15px;
+            font-family: 'Outfit', sans-serif;
             font-weight: 500;
             color: #fff;
             cursor: pointer;
-            letter-spacing: 1px;
-            animation: shimmer 3s ease infinite;
+            letter-spacing: 1.5px;
+            animation: btnShimmer 3s ease infinite;
             transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(220, 80, 130, 0.45), 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        #open-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 55%);
+            border-radius: inherit;
         }
 
         #open-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 36px rgba(220, 80, 130, 0.5);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 0 60px rgba(220, 80, 130, 0.65), 0 8px 30px rgba(0,0,0,0.4);
         }
 
-        #open-btn:active {
-            transform: scale(0.97);
+        #open-btn:active { transform: scale(0.97); }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 520px) {
+            .flip-card { width: 68px; height: 76px; }
+            .flip-front, .flip-back { font-size: 32px; border-radius: 12px; }
+            .ann-sep { font-size: 24px; margin-bottom: 24px; }
+            .ann-timer { gap: 6px; }
         }
 
-
-        /* ── Responsive ── */
-        @media (max-width: 480px) {
-            .ann-num {
-                width: 66px;
-                font-size: 30px;
-                padding: 12px 0;
-                border-radius: 10px;
-            }
-
-            .ann-sep {
-                font-size: 22px;
-                margin-bottom: 22px;
-            }
-
-            .ann-title {
-                font-size: 24px;
-            }
-
-
+        @media (max-width: 360px) {
+            .flip-card { width: 58px; height: 64px; }
+            .flip-front, .flip-back { font-size: 26px; border-radius: 10px; }
+            .ann-timer { gap: 4px; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Enter overlay -->
-    <div id="enter-overlay" onclick="enterSite()">
-        <div class="enter-heart">💕</div>
-        <div class="enter-title">A Special Surprise For You</div>
-        <div class="enter-sub">tap anywhere to open</div>
-        <button class="enter-btn">♥ &nbsp; Enter</button>
-        <div class="enter-note">🎵 with music</div>
+    <!-- ─── Aurora background ─── -->
+    <div id="aurora">
+        <div class="aurora-blob blob1"></div>
+        <div class="aurora-blob blob2"></div>
+        <div class="aurora-blob blob3"></div>
     </div>
 
-    <div id="ann-root">
-        <div id="ann-bg"></div>
-        <canvas id="ann-canvas"></canvas>
-        <div class="ann-blur-overlay"></div>
+    <!-- ─── Particle canvas ─── -->
+    <canvas id="ann-canvas"></canvas>
 
-        <!-- Music toggle -->
-        <div id="music-btn" onclick="toggleMusic()" title="Toggle music">
-            <div class="music-bars" id="music-bars">
-                <div class="music-bar bar1"></div>
-                <div class="music-bar bar2"></div>
-                <div class="music-bar bar3"></div>
-                <div class="music-bar bar4"></div>
-            </div>
-            <div id="music-label">BGM</div>
+    <!-- ─── Music button ─── -->
+    <div id="music-btn" onclick="toggleMusic()" title="Toggle music">
+        <div class="music-bars" id="music-bars">
+            <div class="music-bar bar1"></div>
+            <div class="music-bar bar2"></div>
+            <div class="music-bar bar3"></div>
+            <div class="music-bar bar4"></div>
         </div>
+        <div id="music-label">BGM</div>
+    </div>
 
-        <!-- Main countdown page -->
+    <!-- ─── Main content ─── -->
+    <div id="ann-root">
         <div class="ann-content" id="main-page">
+
             <div class="ann-hearts-row">♥ ♥ ♥</div>
             <div class="ann-label">Anniversary Countdown</div>
             <div class="ann-title">Our Special Day</div>
             <div class="ann-subtitle">8th August, 2026</div>
 
+            <!-- Countdown timer -->
             <div class="ann-timer" id="ann-timer">
                 <div class="ann-unit">
-                    <div class="ann-num" id="cd-days">00</div>
+                    <div class="flip-card" id="fc-days">
+                        <div class="flip-inner">
+                            <div class="flip-front" id="cd-days">00</div>
+                            <div class="flip-back"></div>
+                        </div>
+                    </div>
                     <div class="ann-uname">Days</div>
                 </div>
                 <div class="ann-sep">:</div>
                 <div class="ann-unit">
-                    <div class="ann-num" id="cd-hours">00</div>
+                    <div class="flip-card" id="fc-hours">
+                        <div class="flip-inner">
+                            <div class="flip-front" id="cd-hours">00</div>
+                            <div class="flip-back"></div>
+                        </div>
+                    </div>
                     <div class="ann-uname">Hours</div>
                 </div>
                 <div class="ann-sep">:</div>
                 <div class="ann-unit">
-                    <div class="ann-num" id="cd-mins">00</div>
+                    <div class="flip-card" id="fc-mins">
+                        <div class="flip-inner">
+                            <div class="flip-front" id="cd-mins">00</div>
+                            <div class="flip-back"></div>
+                        </div>
+                    </div>
                     <div class="ann-uname">Minutes</div>
                 </div>
                 <div class="ann-sep">:</div>
                 <div class="ann-unit">
-                    <div class="ann-num" id="cd-secs">00</div>
+                    <div class="flip-card" id="fc-secs">
+                        <div class="flip-inner">
+                            <div class="flip-front" id="cd-secs">00</div>
+                            <div class="flip-back"></div>
+                        </div>
+                    </div>
                     <div class="ann-uname">Seconds</div>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="ann-progress-wrap" id="progress-wrap">
+                <div class="progress-label">Journey so far</div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
                 </div>
             </div>
 
             <div class="ann-date-chip"><span>♥</span><span>8 August 2026 · 12:00 AM</span></div>
 
-            <!-- Shown when countdown ends -->
+            <!-- Arrival celebration -->
             <div class="ann-arrived-section" id="arrived-section">
                 <span class="ann-arrived-emoji">💕</span>
                 <div class="ann-arrived-title">Happy Anniversary!</div>
@@ -609,139 +593,202 @@
 
             <div class="ann-message" id="ann-msg">Every second brings us closer together...</div>
         </div>
-
     </div>
 
     <script>
-        (function () {
-            /* ─── Countdown ─── */
-            const target = new Date('2026-08-08T00:00:00');
-            let arrived = false;
+    (function () {
 
-            function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+        /* ═══════════════════════════════════
+           COUNTDOWN
+        ═══════════════════════════════════ */
+        const TARGET   = new Date('2026-08-08T00:00:00');
+        // journey start — adjust to your relationship start date
+        const JOURNEY_START = new Date('2025-08-08T00:00:00');
 
-            const phrases = [
-                'Every second brings us closer together...',
-                'Love grows stronger with every heartbeat...',
-                'Counting down to our perfect moment...',
-                'Time flies when you\'re in love...'
-            ];
+        let arrived = false;
+        const prevVals = { days: -1, hours: -1, mins: -1, secs: -1 };
 
-            function tick() {
-                const diff = target - new Date();
-                if (diff <= 0 && !arrived) {
-                    arrived = true;
-                    document.getElementById('ann-timer').style.display = 'none';
-                    document.getElementById('ann-msg').style.display = 'none';
-                    document.getElementById('arrived-section').style.display = 'block';
-                    return;
+        function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+        /* flip animation trigger */
+        function setFlip(cardId, frontId, val) {
+            const card  = document.getElementById(cardId);
+            const front = document.getElementById(frontId);
+            if (front.textContent === val) return;
+            front.textContent = val;
+            card.classList.remove('flipping');
+            void card.offsetWidth; // reflow
+            card.classList.add('flipping');
+            setTimeout(() => card.classList.remove('flipping'), 380);
+        }
+
+        /* rotating phrases */
+        const phrases = [
+            'Every second brings us closer together...',
+            'Love grows stronger with every heartbeat...',
+            'Counting down to our perfect moment...',
+            'Time flies when you\'re in love...',
+            'Distance is just a test of how far love can travel...',
+            'Missing you is how I know I love you...'
+        ];
+        let phraseIdx = 0;
+
+        function rotatePhrases() {
+            const el = document.getElementById('ann-msg');
+            el.classList.add('fading');
+            setTimeout(() => {
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                el.textContent = phrases[phraseIdx];
+                el.classList.remove('fading');
+            }, 600);
+        }
+        setInterval(rotatePhrases, 8000);
+
+        /* progress bar */
+        function updateProgress() {
+            const totalMs = TARGET - JOURNEY_START;
+            const doneMs  = Date.now() - JOURNEY_START;
+            const pct     = Math.min(100, Math.max(0, (doneMs / totalMs) * 100));
+            document.getElementById('progress-fill').style.width = pct.toFixed(2) + '%';
+        }
+
+        function tick() {
+            const diff = TARGET - new Date();
+
+            if (diff <= 0 && !arrived) {
+                arrived = true;
+                document.getElementById('ann-timer').style.display    = 'none';
+                document.getElementById('ann-msg').style.display      = 'none';
+                document.getElementById('progress-wrap').style.display = 'none';
+                document.getElementById('arrived-section').style.display = 'flex';
+                return;
+            }
+
+            if (!arrived) {
+                const s = Math.floor(diff / 1000);
+                const d = Math.floor(s / 86400);
+                const h = Math.floor((s % 86400) / 3600);
+                const m = Math.floor((s % 3600) / 60);
+                const sec = s % 60;
+
+                setFlip('fc-days',  'cd-days',  pad(d));
+                setFlip('fc-hours', 'cd-hours', pad(h));
+                setFlip('fc-mins',  'cd-mins',  pad(m));
+                setFlip('fc-secs',  'cd-secs',  pad(sec));
+
+                updateProgress();
+            }
+        }
+        tick();
+        setInterval(tick, 1000);
+
+        window.openCelebration = function () {
+            window.location.href = 'special_day.html';
+        };
+
+        /* ═══════════════════════════════════
+           CANVAS PARTICLES
+        ═══════════════════════════════════ */
+        const canvas = document.getElementById('ann-canvas');
+        const ctx    = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        function drawHeart(c, x, y, r) {
+            c.save();
+            c.translate(x, y);
+            c.beginPath();
+            c.moveTo(0, -r * 0.3);
+            c.bezierCurveTo( r * 0.5, -r, r, -r * 0.3, 0,  r * 0.55);
+            c.bezierCurveTo(-r,       -r * 0.3, -r * 0.5, -r, 0, -r * 0.3);
+            c.closePath();
+            c.restore();
+        }
+
+        const PARTICLE_COUNT = 60;
+        const particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+            x:       Math.random() * window.innerWidth,
+            y:       Math.random() * window.innerHeight,
+            r:       Math.random() * 5 + 2,
+            vy:      -(Math.random() * 0.5 + 0.15),
+            vx:      (Math.random() - 0.5) * 0.3,
+            opacity: Math.random() * 0.5 + 0.05,
+            hue:     320 + Math.random() * 40,
+            isHeart: Math.random() > 0.5,
+            wobble:  Math.random() * Math.PI * 2,
+        }));
+
+        function animateParticles(ts) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const p of particles) {
+                p.wobble += 0.018;
+                p.x += p.vx + Math.sin(p.wobble) * 0.18;
+                p.y += p.vy;
+                if (p.y < -20) {
+                    p.y = canvas.height + 20;
+                    p.x = Math.random() * canvas.width;
                 }
-                if (!arrived) {
-                    const s = Math.floor(diff / 1000);
-                    document.getElementById('cd-days').textContent = pad(Math.floor(s / 86400));
-                    document.getElementById('cd-hours').textContent = pad(Math.floor((s % 86400) / 3600));
-                    document.getElementById('cd-mins').textContent = pad(Math.floor((s % 3600) / 60));
-                    document.getElementById('cd-secs').textContent = pad(s % 60);
-                    document.getElementById('ann-msg').textContent = phrases[Math.floor(Date.now() / 8000) % phrases.length];
+                ctx.save();
+                ctx.globalAlpha = p.opacity;
+                ctx.fillStyle = `hsl(${p.hue},80%,68%)`;
+                if (p.isHeart) {
+                    drawHeart(ctx, p.x, p.y, p.r * 2.2);
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
                 }
+                ctx.restore();
             }
-            tick();
-            setInterval(tick, 1000);
+            requestAnimationFrame(animateParticles);
+        }
+        requestAnimationFrame(animateParticles);
 
-            /* ─── Celebration page ─── */
-            window.openCelebration = function () {
-                window.location.href = 'special_day.html';
-            };
+        /* ═══════════════════════════════════
+           AUDIO
+        ═══════════════════════════════════ */
+        const bgMusic  = new Audio('song/song.mp3');
+        bgMusic.loop   = true;
+        bgMusic.volume = 0.45;
+        let isPlaying  = false;
 
-            /* ─── Floating particles (main bg) ─── */
-            const canvas = document.getElementById('ann-canvas');
-            const ctx = canvas.getContext('2d');
-            const particles = [];
+        function startMusic() {
+            if (isPlaying) return;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                document.getElementById('music-bars').classList.add('music-playing');
+                document.getElementById('music-label').textContent = 'ON';
+            }).catch(() => {});
+        }
 
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
+        function stopMusic() {
+            if (!isPlaying) return;
+            isPlaying = false;
+            bgMusic.pause();
+            document.getElementById('music-bars').classList.remove('music-playing');
+            document.getElementById('music-label').textContent = 'OFF';
+        }
 
-            function drawHeart(c, x, y, size) {
-                c.save(); c.translate(x, y); c.scale(size / 10, size / 10);
-                c.beginPath(); c.moveTo(0, -3);
-                c.bezierCurveTo(5, -8, 10, -3, 0, 5);
-                c.bezierCurveTo(-10, -3, -5, -8, 0, -3);
-                c.closePath(); c.restore();
-            }
+        window.toggleMusic = function () { isPlaying ? stopMusic() : startMusic(); };
 
-            resize();
-            for (let i = 0; i < 50; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 3 + 1,
-                    speedY: -(Math.random() * 0.45 + 0.1),
-                    speedX: (Math.random() - 0.5) * 0.25,
-                    opacity: Math.random() * 0.55 + 0.08,
-                    isHeart: Math.random() > 0.58
-                });
-            }
+        /* Start music on first interaction with the page */
+        function onFirstInteraction() {
+            startMusic();
+            document.removeEventListener('click',      onFirstInteraction);
+            document.removeEventListener('touchstart', onFirstInteraction);
+            document.removeEventListener('keydown',    onFirstInteraction);
+        }
+        document.addEventListener('click',      onFirstInteraction);
+        document.addEventListener('touchstart', onFirstInteraction);
+        document.addEventListener('keydown',    onFirstInteraction);
 
-            function animateParticles() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (const p of particles) {
-                    ctx.save();
-                    ctx.globalAlpha = p.opacity;
-                    ctx.fillStyle = 'hsl(' + (328 + Math.random() * 28) + ',78%,68%)';
-                    if (p.isHeart) { drawHeart(ctx, p.x, p.y, p.size * 4); ctx.fill(); }
-                    else { ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill(); }
-                    ctx.restore();
-                    p.x += p.speedX;
-                    p.y += p.speedY;
-                    if (p.y < -12) { p.y = canvas.height + 12; p.x = Math.random() * canvas.width; }
-                }
-                requestAnimationFrame(animateParticles);
-            }
-            animateParticles();
-
-
-            window.addEventListener('resize', resize);
-
-            /* ─── Web Audio BGM ─── */
-            let bgMusic = new Audio('song/song.mp3');
-            bgMusic.loop = true;
-            bgMusic.volume = 0.5;
-            let isPlaying = false;
-
-            function startMusic() {
-                if (isPlaying) return;
-                bgMusic.play().then(() => {
-                    isPlaying = true;
-                    document.getElementById('music-bars').classList.add('music-playing');
-                    document.getElementById('music-label').textContent = 'ON';
-                }).catch(err => {
-                    console.log('Playback error: ' + err);
-                });
-            }
-
-            function stopMusic() {
-                if (!isPlaying) return;
-                isPlaying = false;
-                bgMusic.pause();
-                document.getElementById('music-bars').classList.remove('music-playing');
-                document.getElementById('music-label').textContent = 'OFF';
-            }
-
-            window.toggleMusic = function () { isPlaying ? stopMusic() : startMusic(); };
-
-            /* Enter overlay — guarantees a user gesture before play() */
-            window.enterSite = function () {
-                const overlay = document.getElementById('enter-overlay');
-                overlay.style.transition = 'opacity 0.6s ease';
-                overlay.style.opacity = '0';
-                overlay.style.pointerEvents = 'none';
-                setTimeout(() => { overlay.style.display = 'none'; }, 650);
-                startMusic();
-            };
-
-        })();
+    })();
     </script>
 </body>
 
