@@ -58,6 +58,90 @@
             z-index: 2;
         }
 
+        /* ── Enter overlay ── */
+        #enter-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #3d0030 0%, #0d0010 70%);
+            cursor: pointer;
+            animation: overlayPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes overlayPulse {
+            0%, 100% { background: radial-gradient(ellipse at center, #3d0030 0%, #0d0010 70%); }
+            50%       { background: radial-gradient(ellipse at center, #5a0045 0%, #1a0018 70%); }
+        }
+
+        .enter-heart {
+            font-size: 80px;
+            animation: heartBeat 1.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 24px rgba(220, 80, 130, 0.9));
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            14%       { transform: scale(1.18); }
+            28%       { transform: scale(1); }
+            42%       { transform: scale(1.12); }
+            70%       { transform: scale(1); }
+        }
+
+        .enter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(26px, 6vw, 42px);
+            color: #ffb4d0;
+            text-shadow: 0 0 20px rgba(220, 80, 130, 0.8);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .enter-sub {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            color: rgba(255, 180, 210, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .enter-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #c8365a 0%, #e05585 50%, #c8365a 100%);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 44px;
+            font-size: 16px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            color: #fff;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            animation: shimmer 3s ease infinite;
+            box-shadow: 0 8px 32px rgba(220, 80, 130, 0.45);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 12px 40px rgba(220, 80, 130, 0.65);
+        }
+
+        .enter-note {
+            margin-top: 18px;
+            font-size: 12px;
+            color: rgba(255, 180, 210, 0.35);
+            letter-spacing: 2px;
+        }
+
         /* ── Music button ── */
         #music-btn {
             position: fixed;
@@ -433,125 +517,6 @@
             transform: scale(0.97);
         }
 
-        /* ── Welcome Overlay ── */
-        #ann-welcome-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: radial-gradient(circle at center, #1a001a 0%, #050009 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
-            backdrop-filter: blur(15px);
-        }
-
-        #ann-welcome-overlay.fade-out {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .welcome-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 100, 150, 0.2);
-            border-radius: 28px;
-            padding: 3.5rem 2rem;
-            text-align: center;
-            max-width: 420px;
-            width: 90%;
-            backdrop-filter: blur(25px);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            animation: welcome-pulse 4s infinite ease-in-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        @keyframes welcome-pulse {
-            0%, 100% {
-                box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
-                border-color: rgba(255, 100, 150, 0.25);
-            }
-            50% {
-                box-shadow: 0 24px 60px rgba(255, 100, 150, 0.15);
-                border-color: rgba(255, 100, 150, 0.5);
-            }
-        }
-
-        .welcome-heart-container {
-            position: relative;
-            cursor: pointer;
-            margin-bottom: 2rem;
-        }
-
-        .welcome-heart {
-            font-size: 4.8rem;
-            color: #ff4d79;
-            filter: drop-shadow(0 0 15px rgba(255, 77, 121, 0.75));
-            animation: welcome-heartbeat 1.4s infinite cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: inline-block;
-            transition: transform 0.2s;
-        }
-
-        .welcome-heart-container:hover .welcome-heart {
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 25px rgba(255, 77, 121, 0.95));
-        }
-
-        @keyframes welcome-heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.12); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.07); }
-        }
-
-        .welcome-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.8rem;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(255, 77, 121, 0.6);
-        }
-
-        .welcome-text {
-            font-size: 0.85rem;
-            color: rgba(255, 190, 215, 0.6);
-            margin-bottom: 2.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .welcome-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #c8365a 0%, #e05585 50%, #c8365a 100%);
-            background-size: 200% 200%;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 45px;
-            font-size: 15px;
-            font-weight: 500;
-            color: #fff;
-            cursor: pointer;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 6px 20px rgba(220, 80, 130, 0.35);
-            transition: transform 0.2s, box-shadow 0.2s;
-            animation: shimmer 3s ease infinite;
-        }
-
-        .welcome-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(220, 80, 130, 0.55);
-        }
-
-        .welcome-btn:active {
-            transform: scale(0.97);
-        }
 
         /* ── Responsive ── */
         @media (max-width: 480px) {
@@ -578,16 +543,13 @@
 
 <body>
 
-    <!-- Welcome Overlay -->
-    <div id="ann-welcome-overlay" onclick="dismissWelcome()">
-        <div class="welcome-card" onclick="event.stopPropagation()">
-            <div class="welcome-heart-container" onclick="dismissWelcome()">
-                <div class="welcome-heart">♥</div>
-            </div>
-            <h1 class="welcome-title">Our Anniversary</h1>
-            <p class="welcome-text">Tap to Open Our Story</p>
-            <button class="welcome-btn" onclick="dismissWelcome()">Enter ♥</button>
-        </div>
+    <!-- Enter overlay -->
+    <div id="enter-overlay" onclick="enterSite()">
+        <div class="enter-heart">💕</div>
+        <div class="enter-title">A Special Surprise For You</div>
+        <div class="enter-sub">tap anywhere to open</div>
+        <button class="enter-btn">♥ &nbsp; Enter</button>
+        <div class="enter-note">🎵 with music</div>
     </div>
 
     <div id="ann-root">
@@ -745,20 +707,17 @@
             /* ─── Web Audio BGM ─── */
             let bgMusic = new Audio('song/song.mp3');
             bgMusic.loop = true;
-            bgMusic.volume = 0.5; // Moderate volume
-            let isPlaying = false, musicStarted = false;
+            bgMusic.volume = 0.5;
+            let isPlaying = false;
 
             function startMusic() {
                 if (isPlaying) return;
-                isPlaying = true;
-                musicStarted = true;
                 bgMusic.play().then(() => {
+                    isPlaying = true;
                     document.getElementById('music-bars').classList.add('music-playing');
                     document.getElementById('music-label').textContent = 'ON';
                 }).catch(err => {
-                    console.log("Playback prevented by browser: " + err);
-                    isPlaying = false;
-                    musicStarted = false;
+                    console.log('Playback error: ' + err);
                 });
             }
 
@@ -772,42 +731,15 @@
 
             window.toggleMusic = function () { isPlaying ? stopMusic() : startMusic(); };
 
-            window.dismissWelcome = function () {
+            /* Enter overlay — guarantees a user gesture before play() */
+            window.enterSite = function () {
+                const overlay = document.getElementById('enter-overlay');
+                overlay.style.transition = 'opacity 0.6s ease';
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+                setTimeout(() => { overlay.style.display = 'none'; }, 650);
                 startMusic();
-                
-                // Remove interaction listeners since music is started
-                document.removeEventListener('click', initInteraction);
-                document.removeEventListener('keydown', initInteraction);
-                document.removeEventListener('touchstart', initInteraction);
-
-                const overlay = document.getElementById('ann-welcome-overlay');
-                if (overlay) {
-                    overlay.classList.add('fade-out');
-                    setTimeout(() => {
-                        overlay.remove();
-                    }, 800);
-                }
             };
-
-            /* Auto-start on first interaction (browser policy) */
-            function initInteraction() {
-                if (!musicStarted) startMusic();
-                // Also remove the overlay if they interact outside of it
-                const overlay = document.getElementById('ann-welcome-overlay');
-                if (overlay && !overlay.classList.contains('fade-out')) {
-                    overlay.classList.add('fade-out');
-                    setTimeout(() => overlay.remove(), 800);
-                }
-                document.removeEventListener('click', initInteraction);
-                document.removeEventListener('keydown', initInteraction);
-                document.removeEventListener('touchstart', initInteraction);
-            }
-            document.addEventListener('click', initInteraction);
-            document.addEventListener('keydown', initInteraction);
-            document.addEventListener('touchstart', initInteraction);
-
-            /* Try silent autoplay immediately */
-            setTimeout(() => { if (!musicStarted) startMusic(); }, 300);
 
         })();
     </script>

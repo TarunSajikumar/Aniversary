@@ -501,48 +501,6 @@
                 font-size: 0.8rem;
             }
         }
-
-        /* ── Audio Prompt Toast ── */
-        #audio-prompt {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(0);
-            z-index: 1000;
-            background: rgba(220, 80, 130, 0.15);
-            border: 1px solid rgba(255, 120, 170, 0.35);
-            border-radius: 40px;
-            padding: 10px 24px;
-            font-size: 13px;
-            color: rgba(255, 210, 225, 0.9);
-            letter-spacing: 1px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        #audio-prompt.show {
-            opacity: 1;
-            visibility: visible;
-            animation: bounce-gentle 2s infinite ease-in-out;
-        }
-
-        #audio-prompt.hide {
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-            visibility: hidden;
-        }
-
-        @keyframes bounce-gentle {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-6px); }
-        }
     </style>
 </head>
 
@@ -897,24 +855,10 @@
                 bgMusic.play().then(() => {
                     document.getElementById('music-bars').classList.add('music-playing');
                     document.getElementById('music-label').textContent = 'ON';
-                    
-                    // Hide audio prompt toast if visible
-                    const prompt = document.getElementById('audio-prompt');
-                    if (prompt) {
-                        prompt.classList.remove('show');
-                        prompt.classList.add('hide');
-                    }
                 }).catch(err => {
                     console.log("Playback prevented: " + err);
                     isPlaying = false;
                     musicStarted = false;
-                    
-                    // Show audio prompt toast
-                    const prompt = document.getElementById('audio-prompt');
-                    if (prompt) {
-                        prompt.classList.remove('hide');
-                        prompt.classList.add('show');
-                    }
                 });
             }
 
@@ -933,11 +877,6 @@
             /* Auto-start on first interaction */
             function initInteraction() {
                 if (!musicStarted) startMusic();
-                const prompt = document.getElementById('audio-prompt');
-                if (prompt && !prompt.classList.contains('hide')) {
-                    prompt.classList.remove('show');
-                    prompt.classList.add('hide');
-                }
                 document.removeEventListener('click', initInteraction);
                 document.removeEventListener('keydown', initInteraction);
                 document.removeEventListener('touchstart', initInteraction);
@@ -1042,9 +981,6 @@
 
         })();
     </script>
-    <!-- Audio Autoplay Prompt -->
-    <div id="audio-prompt">🎵 Tap anywhere to enable background music</div>
-
 </body>
 
 </html>
